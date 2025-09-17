@@ -5,7 +5,7 @@ import React from 'react'
 const PostPage = () => {
   return (
     <div>
-        <ClientPosts />
+        {/* <ClientPosts /> */}
         <ServerPost />
     </div>
   )
