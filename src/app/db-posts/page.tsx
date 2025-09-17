@@ -29,13 +29,37 @@ const PostPage = () => {
     }
   };
 
+  const deletePost = async (id: string) => {
+  try {
+    const res = await fetch(`/api/posts/${id}`, {
+      method: "DELETE",
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      throw new Error(data.error || "Failed to delete post");
+    }
+
+    alert(data.message); // show success message
+
+    // Optionally refresh posts list if you have a fetchPostData function
+    if (typeof fetchPostData === "function") {
+      await fetchPostData();
+    }
+  } catch (err: any) {
+    alert(`Error: ${err.message}`);
+  }
+};
+
+
   useEffect(() => {
     fetchPostData();
   }, []);
   return (
      <div className="min-h-screen  bg-gray-100 p-6">
      <div>
-         <CreatePostForm />
+         <CreatePostForm fetchPostData={fetchPostData} />
      </div>
       <h1 className="text-3xl mt-6 font-bold mb-6 text-center text-gray-800">
         All Posts
@@ -59,7 +83,7 @@ const PostPage = () => {
               <p className="text-gray-600 text-sm">{post.description}</p>
               <div className="mt-4 flex justify-between items-center">
                  <div>
-                    <button className='px-4 py-1 border rounded shadow-fuchsia-100 text-stone-800 cursor-pointer'>Click</button>
+                    <button onClick={()=>deletePost(post._id)} className='px-4 py-1 border rounded shadow-fuchsia-100 text-stone-800 cursor-pointer'>Delete</button>
                  </div>
                 <div className="text-xs text-gray-400">
                   ID: {post._id.toString()}

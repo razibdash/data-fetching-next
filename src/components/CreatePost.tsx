@@ -1,8 +1,10 @@
 "use client";
 
 import { useState } from "react";
-
-const CreatePostForm = () => {
+type CreatePostFormProps = {
+  fetchPostData: () => Promise<void>; // function type
+};
+const CreatePostForm = ({fetchPostData}:CreatePostFormProps) => {
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [description, setDescription] = useState("");
@@ -28,6 +30,7 @@ const CreatePostForm = () => {
       }
 
       setMessage("✅ Post created successfully!");
+      await fetchPostData()
       setTitle("");
       setAuthor("");
       setDescription("");
