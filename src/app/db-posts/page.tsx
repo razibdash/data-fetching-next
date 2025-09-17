@@ -1,4 +1,5 @@
 "use client"
+import CreatePostForm from '@/components/CreatePost';
 import { PostDb } from '@/types/post'
 import React, { useEffect, useState } from 'react'
 
@@ -33,7 +34,10 @@ const PostPage = () => {
   }, []);
   return (
      <div className="min-h-screen  bg-gray-100 p-6">
-      <h1 className="text-3xl font-bold mb-6 text-center text-gray-800">
+     <div>
+         <CreatePostForm />
+     </div>
+      <h1 className="text-3xl mt-6 font-bold mb-6 text-center text-gray-800">
         All Posts
       </h1>
 
