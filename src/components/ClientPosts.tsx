@@ -39,10 +39,10 @@ const dataFetch = async () => {
   if (error) return <p style={{ color: "red" }}>{error}</p>;
 
   return (
-    <div className="p-6">
+  <div className="p-6">
   <h2 className="text-2xl font-bold mb-6 text-gray-200">Posts</h2>
   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-    {posts.map((post) => (
+    {posts.slice(0,10).map((post) => (
       <div
         key={post.id}
         className="bg-white shadow-md rounded-xl p-5 border border-gray-200 hover:shadow-lg transition"
