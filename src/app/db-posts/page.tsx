@@ -59,7 +59,7 @@ const PostPage = () => {
   return (
      <div className="min-h-screen  bg-gray-100 p-6">
      <div>
-         <CreatePostForm fetchPostData={fetchPostData} />
+         <CreatePostForm fetchPostData={fetchPostData}  />
      </div>
       <h1 className="text-3xl mt-6 font-bold mb-6 text-center text-gray-800">
         All Posts
@@ -74,9 +74,12 @@ const PostPage = () => {
               key={post._id}
               className="bg-white shadow-md rounded-xl p-5 hover:shadow-lg transition-shadow"
             >
-              <h2 className="text-xl font-semibold text-gray-800 mb-2">
+              <div className='flex justify-between items-center'>
+                <h2 className="text-xl font-semibold text-gray-800 mb-2">
                 {post.title}
               </h2>
+               <button className='px-4 py-1 border rounded shadow-fuchsia-100 text-stone-800 cursor-pointer'>Edit</button>
+              </div>
               <h2 className="text-sm font-semibold text-gray-500 mb-2">
                 {post.author}
               </h2>
